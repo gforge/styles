@@ -103,15 +103,13 @@
         <else-if type="article article-newspaper article-journal article-magazine manuscript" match="any">
           <choose>
             <if match="any" variable="DOI">
-              <text macro="author" strip-periods="false" font-style="italic" suffix=": "/>
-              <text macro="title" font-style="italic"/>
-              <text value=""/>
-              <text macro="container-title" strip-periods="true" font-style="italic"/>
-              <text value=" DOI:" font-style="italic"/>
-              <text variable="DOI" font-style="italic"/>
-              <text value=" [Online " font-style="italic"/>
-              <date form="text" variable="issued" font-style="italic" font-weight="normal"/>
-              <text value="]" font-style="italic"/>
+        		  <group font-style="italic">
+        				<text macro="author" suffix=": "/>
+        				<text macro="title" />
+        				<text macro="container-title" strip-periods="true"/>
+          			<text variable="DOI" prefix=" DOI:"/>
+        				<date form="text" variable="issued" prefix=" [Online " suffix="]"/>
+      			  </group>
             </if>
             <else>
               <text macro="author" strip-periods="false"/>
