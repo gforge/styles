@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<style class="in-text" version="1.0" et-al-min="7" et-al-use-first="3" demote-non-dropping-particle="sort-only" default-locale="en-US" xmlns="http://purl.org/net/xbiblio/csl">
+<!-- This style was edited with the Visual CSL Editor (http://editor.citationstyles.org/visualEditor/) -->
+  <info>
+    <title>Annals of Surgical Oncology (for submission)</title>
+    <id>http://www.zotero.org/styles/annals-of-surgical-oncology-for-submission</id>
+    <link href="http://www.zotero.org/styles/annals-of-surgical-oncology-for-submission" rel="self"/>
+    <author>
+      <name>Johannes Braegelmann</name>
+      <email>j.braegelmann@gmx.de</email>
+    </author>
+    <author>
+      <name>Max Gordon</name>
+      <email>max@gforge.se</email>
+    </author>
+    <category citation-format="numeric"/>
+    <category field="medicine"/>
+    <issn>1068-9265</issn>
+    <eissn>1534-4681</eissn>
+    <summary>American Medical Association Manual of Style, 10th Edition (New York: Oxford University Press, 2007). Note: This is the version that is requested for submission and does not resemble the actual print.</summary>
+    <updated>2013-08-08T19:17:52+00:00</updated>
+    <rights license="http://creativecommons.org/licenses/by-sa/3.0/">This work is licensed under a Creative Commons Attribution-ShareAlike 3.0 License</rights>
+    <link href="http://www.annsurgoncol.org/Author_Resource_Center.html" rel="documentation"/>
+    <link href="http://www.springer.com/medicine/oncology/journal/10434" rel="documentation"/>
+  </info>
+  <locale xml:lang="en">
+    <terms>
+      <term name="editor" form="short">
+        <single>ed</single>
+        <multiple>eds</multiple>
+      </term>
+    </terms>
+  </locale>
+  <macro name="author">
+    <names variable="author" suffix=". ">
+      <name sort-separator=" " initialize-with="" name-as-sort-order="all" delimiter=", " delimiter-precedes-last="always"/>
+    </names>
+  </macro>
+  <macro name="editor">
+    <names variable="editor" prefix=" In " suffix=": ">
+      <name sort-separator=" " initialize-with="" name-as-sort-order="all" delimiter=", " delimiter-precedes-last="always" et-al-min="5" et-al-use-first="3" delimiter-precedes-et-al="never"/>
+      <label form="short" prefix=" (" suffix=")"/>
+      <substitute>
+        <names variable="editor"/>
+      </substitute>
+    </names>
+  </macro>
+  <macro name="publisher">
+    <text variable="publisher-place" suffix=": "/>
+    <text variable="publisher" suffix=", "/>
+  </macro>
+  <macro name="container-title">
+    <text variable="container-title" vertical-align="baseline" form="short"/>
+  </macro>
+  <macro name="title">
+    <choose>
+      <if type="bill book graphic legal_case legislation motion_picture report song" match="any">
+        <text variable="title" suffix=", "/>
+      </if>
+      <else>
+        <text variable="title" suffix=". "/>
+      </else>
+    </choose>
+  </macro>
+  <macro name="volume">
+    <text variable="volume"/>
+    <text variable="issue" prefix="(" suffix=")"/>
+  </macro>
+  <macro name="edition">
+    <choose>
+      <if is-numeric="edition">
+        <group delimiter=" ">
+          <number variable="edition" form="ordinal"/>
+          <text term="edition" form="long" suffix="."/>
+        </group>
+      </if>
+      <else>
+        <text variable="edition" suffix="."/>
+      </else>
+    </choose>
+  </macro>
+  <citation collapse="citation-number">
+    <sort>
+      <key variable="citation-number"/>
+    </sort>
+    <layout prefix="[" suffix="]" delimiter=", ">
+      <text variable="citation-number"/>
+    </layout>
+  </citation>
+  <bibliography et-al-min="5" et-al-use-first="3" delimiter-precedes-et-al="never" second-field-align="flush">
+    <layout suffix=".">
+      <text variable="citation-number" suffix=". "/>
+      <choose>
+        <if type="webpage">
+          <text macro="title"/>
+          <text variable="URL" prefix=" Available: "/>
+          <date variable="accessed" prefix=" [accessed " suffix="]">
+            <date-part name="month" />
+            <date-part name="day" />
+            <date-part name="year" />
+          </date>
+        </if>
+        <else-if type="article article-newspaper article-journal article-magazine manuscript" match="any">
+          <choose>
+            <if match="any" variable="DOI">
+			  <group font-style="italic">
+				<text macro="author" suffix=": "/>
+				<text macro="title" />
+				<text macro="container-title" strip-periods="true"/>
+				<text value=" DOI:" />
+				<text variable="DOI" />
+				<date form="text" variable="issued" prefix=" [Online " suffix="]"/>
+			  </group>
+            </if>
+            <else>
+              <text macro="author" strip-periods="false"/>
+              <text macro="title"/>
+              <text macro="container-title" strip-periods="true" suffix=" "/>
+              <date variable="issued">
+                <date-part name="year"/>
+              </date>
+              <choose>
+                <if variable="page">
+                  <text macro="volume" prefix="; "/>
+                  <text variable="page" font-variant="normal" prefix=":"/>
+                </if>
+              </choose>
+            </else>
+          </choose>
+        </else-if>
+        <else>
+          <text macro="author"/>
+          <text macro="title"/>
+          <choose>
+            <if type="bill book graphic legal_case legislation motion_picture report song" match="any">
+              <text macro="edition" suffix=" "/>
+              <text macro="publisher" prefix=" "/>
+            </if>
+            <else-if type="chapter paper-conference" match="any">
+              <text macro="editor"/>
+              <text macro="container-title" suffix=", "/>
+              <text macro="edition" suffix=". "/>
+              <text macro="publisher" prefix=" "/>
+            </else-if>
+            <else>
+              <text macro="container-title" strip-periods="true" suffix=" "/>
+            </else>
+          </choose>
+          <date variable="issued">
+            <date-part name="year"/>
+          </date>
+          <choose>
+            <if variable="page">
+              <text macro="volume" prefix="; "/>
+              <text variable="page" font-variant="normal" prefix=":" suffix=""/>
+            </if>
+          </choose>
+        </else>
+      </choose>
+    </layout>
+  </bibliography>
+</style>
